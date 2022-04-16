@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -9,7 +9,8 @@ export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
   @Output('bpCeated') blueprintrCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
   // newServerName = '';
-  newServerContent = '';
+  // newServerContent = '';
+  @ViewChild('ServerContentOutput') ServerContentOutput :ElementRef
   constructor() { }
 
   ngOnInit(): void {
@@ -18,13 +19,13 @@ export class CockpitComponent implements OnInit {
   onAddServer(namInput: HTMLInputElement) {
     this.serverCreated.emit({
        serverName: namInput.value,// Using Local References in Templates
-        serverContent: this.newServerContent // usin iterrpollation
+        serverContent: this.ServerContentOutput.nativeElement.value // usin iterrpollation
        })
   }
 
   onAddBlueprint(namInput: HTMLInputElement) {
     this.blueprintrCreated.emit({ 
       serverName: namInput.value,
-       serverContent: this.newServerContent })
+       serverContent: this.ServerContentOutput.nativeElement.value })
   }
 }
