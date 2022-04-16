@@ -10,7 +10,7 @@ export class CockpitComponent implements OnInit {
   @Output('bpCeated') blueprintrCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
   // newServerName = '';
   // newServerContent = '';
-  @ViewChild('ServerContentOutput') ServerContentOutput :ElementRef
+  @ViewChild('ServerContentOutput') ServerContentOutput: ElementRef
   constructor() { }
 
   ngOnInit(): void {
@@ -18,14 +18,15 @@ export class CockpitComponent implements OnInit {
 
   onAddServer(namInput: HTMLInputElement) {
     this.serverCreated.emit({
-       serverName: namInput.value,// Using Local References in Templates
-        serverContent: this.ServerContentOutput.nativeElement.value // usin iterrpollation
-       })
+      serverName: namInput.value,// Using Local References in Templates
+      serverContent: this.ServerContentOutput.nativeElement.value // usin iterrpollation
+    })
   }
 
   onAddBlueprint(namInput: HTMLInputElement) {
-    this.blueprintrCreated.emit({ 
+    this.blueprintrCreated.emit({
       serverName: namInput.value,
-       serverContent: this.ServerContentOutput.nativeElement.value })
+      serverContent: this.ServerContentOutput.nativeElement.value
+    })
   }
 }
